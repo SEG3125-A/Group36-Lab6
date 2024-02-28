@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Survey</title>
+        <link rel="stylesheet" href="index.css">
+        <script scr="server.js"></script>
+    </head>
+    <body>
+        <div class="div1">
+            <h1> Store survey</h1>
+            <p1>Feel free to write some reviews about the <a href="https://www.nike.com/ca" target="_blank">Nike's </a> website </p1><br><br>
+            <a href="https://www.nike.com/ca" target="_blank">
+                <img height="400px"  width="600px" src="nike.png" alt="no image">
+            </a>
+        </div>
+
+        <div class="div2">
+            <h2>Share your thoughts</h2>
+            <form method="POST" action="/submit-survey">
+                <label> First name</label>
+                <input type="text" name="firstName" value="" placeholder="First name"><br>
+                <label> Last name</label>
+                <input type="text" name="lastName" value="" placeholder="Last name">
+                <br><br><br>
+
+                <label>How easy is to navigate through the website?</label><br>
+                <input type="radio" name="satisfaction" value="easy">Easy<br>
+                <input type="radio" name="satisfaction" value="neutral ">Neutral<br>
+                <input type="radio" name="satisfaction" value="diificult">Difficult<br><br><br>
+
+                <label>Search and filtering option?</label><br>
+                <select>
+                    <option value="effective" name="search and filtering">Effective</option>
+                    <option value="neutral" name="search and filtering" selected>Neutral</option>
+                    <option value="ineffective" name="search and filtering">Ineffective</option>
+                </select>
+                <br><br><br>
+
+                <label>What should we improved on the website?</label><br>
+                <input type="checkbox" name="improvement" value="Better search functionality">Better search functionality<br>
+                <input type="checkbox" name="improvement" value="User interface improvement">User interface improvement<br>
+                <input type="checkbox" name="improvement" value="More customization options">More customization options<br>
+                <input type="checkbox" name="improvement" value="Enhance compatibility in all devices">Enhance compatibility in all devices<br><br><br>
+
+                <label>Comments and suggestion</label><br>
+                <textarea cols="45" rows="6" name="comment"></textarea>
+                <br><br>
+
+                <input class="submitBtn" type="submit" name="submission" value="Submit the survey">
+            </form>
+
+            <p> Designed by Tony Waffo, Eric Peng and Jordan Takefman</p>
+        </div>
+
+    </body>
+</html>

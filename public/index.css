@@ -1,0 +1,48 @@
+
+
+body{
+    position: relative;
+    display:block;
+    font-family: bodoni;
+    background-image: url("bg2.jpeg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    font-style: italic;
+    font-weight: bolder;
+    color:rgba(245, 245, 219, 0.816);
+}
+
+.div1,.div2{
+    position: relative;
+    border: 0px solid black;
+    margin-bottom: 40px;
+    text-align: center;
+}
+h1{
+    font-size:70px;
+}
+h2{
+    font-size:40px;
+}
+a{
+    color: rgb(203, 141, 191)
+}
+img{
+    border-radius: 8px;
+}
+
+
+.submitBtn{
+    width: 300px;
+    height: 40px;
+    background-color: rgb(146, 156, 157) ;
+    border-radius: 5px;
+    color: black;
+}
+
+input, select{
+    font-style: italic;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
