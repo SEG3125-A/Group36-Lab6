@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Results</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 20px; /* Add spacing between each entry */
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Survey Results</h1>
+    <ul>
+      <% surveyResults.forEach(entry => { %>
+        <li>
+          <strong>Name:</strong> <%= entry.firstName %> <%= entry.lastName %><br>
+          <strong>Satisfaction:</strong> <%= entry.satisfaction %><br>
+          <strong>Improvement:</strong> <%= entry.improvement %><br>
+          <strong>Comment:</strong> <%= entry.comment %><br>
+          <strong>Submission:</strong> <%= entry.submission %><br>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+</body>
+</html>

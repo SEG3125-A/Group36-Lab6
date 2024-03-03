@@ -18,8 +18,8 @@ app.get('/survey', (req, res) => {
 app.post('/submit-survey', (req, res) => {
   const surveyData = req.body;
 
-  // Read existing survey results
-  fs.readFile('survey-results.json', 'utf8', (err, data) => {
+  // Read existing survey analytics
+  fs.readFile('survey-analytics.json', 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading JSON file:', err);
       res.status(500).send('Internal Server Error');
@@ -41,8 +41,8 @@ app.post('/submit-survey', (req, res) => {
     // Append new survey data
     existingResults.push(surveyData);
 
-    // Save updated survey results to the file
-    fs.writeFile('survey-results.json', JSON.stringify(existingResults), (writeErr) => {
+    // Save updated survey results to the analytics file
+    fs.writeFile('survey-analytics.json', JSON.stringify(existingResults), (writeErr) => {
       if (writeErr) {
         console.error('Error writing to JSON file:', writeErr);
         res.status(500).send('Internal Server Error');
@@ -50,6 +50,19 @@ app.post('/submit-survey', (req, res) => {
       }
 
       console.log('Survey data saved.');
+
+    });
+
+
+    // Save updated survey results to the result's file
+    fs.writeFile('survey-results.json', JSON.stringify(surveyData), (writeErr) => {
+      if (writeErr) {
+        console.error('Error writing to JSON file:', writeErr);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+
+      console.log('Survey data analytics saved.');
 
       // Redirect to the results page (assuming you have a results.ejs file)
       res.redirect('/results');
@@ -69,11 +82,41 @@ app.get('/results', (req, res) => {
       return;
     }
 
-    // Parse the JSON data
-    const results = JSON.parse(data);
+    let results;
+    try {
+      // Parse the JSON data
+      results = JSON.parse(data);
+      if (!Array.isArray(results)) {
+        // If results is not an array, wrap it inside an array
+        results = [results];
+      }
+    } catch (parseError) {
+      console.error('Error parsing JSON data:', parseError);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
 
     // Render the results using the EJS template
     res.render('results', { surveyResults: results });
+  });
+});
+
+
+// Serve analytics' page
+app.get('/analytics', (req, res) => {
+  // Read the survey analytics from file
+  fs.readFile('survey-analytics.json', (err, data) => {
+    if (err) {
+      console.error('Error reading JSON anakytics file:', err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    // Parse the JSON data
+    const analytics = JSON.parse(data);
+
+    // Render the analytics using the EJS template
+    res.render('analytics', { surveyResults: analytics });
   });
 });
 
